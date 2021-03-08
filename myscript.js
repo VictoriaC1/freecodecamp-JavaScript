@@ -322,3 +322,310 @@ function fun2()
 }
 fun1();
 fun2();
+
+function mylocalscope()
+{
+	var myVar = 5;
+	//myVar is only visible inside the function
+	console.log(myVar);
+}
+mylocalscope();
+
+var outerwear = "tshirt";
+//this is a global variable, it is declared outside of a function
+function myoutfit()
+{
+	var outerwear = "sweater"; 
+	return outerwear; 
+}
+console.log(myoutfit());
+console.log(outerwear);
+
+//returning a value with RETURN
+function minusseven(num)
+{
+	return num-7;
+
+}
+console.log(minusseven(10));
+
+function timesfive(num)
+{
+	return num*5;
+}
+console.log(timesfive(5)); 
+
+//if u do not specify the return value, the value appears as UNDEFINED
+
+
+var changed = 0 ;
+
+function change(num)
+{
+	return (num+5)/3; 
+}
+changed = change(10);
+
+var processed = 0 ;
+
+function processArg(num)
+{
+	return (num + 3)/5; 
+}
+processed = processArg(7);
+
+
+//stand in line
+
+
+function nextInLine(arr, item)
+{
+	arr.push(item); //we put item at the end of the arr
+	return item;
+    ///return arr.shift() --> it will show the array with item at the end but without
+    //the first element ( [2,3,4,5,6] )
+}
+var testarr = [1,2,3,4,5];
+
+console.log("Before: " + JSON.stringify(testarr));
+//JSON.stringify(testarr) is used to change an array into a string
+console.log(nextInLine(testarr,6)); 
+console.log("After: " + JSON.stringify(testarr));
+
+
+///BOOLEANS 
+//two values: true and false
+
+function welcometoBooleans()
+{
+	return true; 
+
+}
+function ourTrueOrFalse (isittrue)
+{
+	if(isittrue) {
+		return "Yes, it is true";
+	}
+	//else 
+	return "No it is false";
+}
+
+function trueorfalse(wasthattrue)
+{
+	if(wasthattrue)
+	{
+		return "Yes, that was true";
+	}
+	return "No, that was false";
+}
+console.log(trueorfalse(true));
+
+function testEqual (val)
+{
+	if(val == 12)return "equal";
+
+	return "not equal";
+}
+console.log(testEqual(10));
+
+function testStrict(val)
+{
+	if(val === 7)return "equal";
+	return "not equal";
+}
+///testStrict(7) is evaluated as true
+
+/*
+ 3 === 3 //checks the true value of 3 being equal to 3
+ 3 === '3' // this is not true
+ */
+
+
+ function compareEquality(a,b)
+ {
+ 	if(a==b)return "equal";
+ 	return "not equal"
+ }
+ //if we use "==" the "10" will be converted to a string --> true
+ console.log(compareEquality(10,"10"));
+ //if we use "===" the "10" will NOT be converted to a string --> false
+
+ function testNOTequal(val)
+ {
+ 	if(val!=99)
+ 		return "not equal";
+ 	return "equal";
+ }
+
+function testStrictNotequal()
+{
+	if(val!== 17) //does not convert types
+		return "not equal";
+	return "equal";
+}
+
+function testGreaterorEqualThan (val)
+{
+	if(val>= 100)
+		return "over or equal to 100";
+	if(val > 10)
+		return "over 10";
+
+	return "10 or under";
+}
+
+console.log(testGreaterorEqualThan(324)); 
+//OPERATORS
+
+
+function testlogicalAND(val)
+{
+	if(val>= 50 && val <=79) return "yeah";
+	return "ney"; 
+}
+console.log(testlogicalAND(43)); 
+
+function testlogicalOR(val)
+{
+	if(val > 10 || val < 20 )return "outside";
+		return "inside";
+}
+console.log(testlogicalOR(12));
+
+function testELSE(val)
+{
+	var result = " "
+	if(val>5) result = "bigger than 5";
+	else result = "less than 5";
+	return result;
+
+}
+console.log(testELSE(4));
+
+function testELSEIF(val)
+{
+	if(val>10)return "greater than 10";
+	else if( val < 5 ) return "less than 5";
+	else return "between 5 and 10";
+}
+///order is very important on else statements
+console.log(testELSEIF(8));
+
+function elseif(num)
+{
+	if(num < 5 )return "tiny";
+	else if(num < 10)return "small";
+	else if(num < 15)return "medium";
+	else if(num < 20)return "large";
+	else return "huge";
+}
+console.log(elseif(18));
+
+
+///Golf:
+/* 
+Strokes     Return 
+
+1           "Hole-in-one"
+<= par-2     "Eagle"
+par-1        "Birdie"
+par           "Par"
+par+1         "Bogey"
+par +2        "Double Bogey"
+>= par +3      "Go home!" */
+var names = ["Hole-in-one", "Eagle", "Birdie", "Par", "Bogey", "Double Bogey", "Go home!"];
+function golfScore(par,strokes)
+{
+   if(strokes==1)return names[0];
+   else if(strokes <= par-2 )return names[1];
+   else if(strokes == par-1 )return names [2];
+   else if(strokes == par) return names[3];
+   else if(strokes == par+1)return names[4];
+   else if(strokes == par+2)return names[5];
+   else if(strokes >= par+3)return names[6];
+
+}
+console.log(golfScore(5,4));
+
+/*
+Write a switch statement which tests val and sets answer for the following conditions
+1 - "alpha"
+2 - "beta"
+3 - "gamma"
+4 - "delta"
+
+*/
+function caseinSwitch(val)
+{
+	var answer = " ";
+    
+    switch(val){ //we compare val to the different cases we have
+     case 1: answer = "alpha";
+     break; //we are at the end of the case
+
+     case 2: answer = "beta";
+     break;
+
+     case 3: answer = "gamma";
+     break;
+
+     case 4: answer = "delta";
+     break;
+    }
+
+	return answer; 
+}
+console.log(caseinSwitch(1));
+
+
+function SwitchofStuff(val)
+{
+	var answer = " ";
+    
+    switch(val){ 
+     case "a": answer = "alpha";
+     break; 
+
+     case "b": answer = "beta";
+     break;
+
+     case "c": answer = "gamma";
+     break;
+
+     case "d": answer = "delta";
+     break;
+    
+     //when none of the cases apply, similar to the else statement
+     default: 
+     answer = "stuff";
+     break;
+    }
+
+	return answer; 
+}
+console.log(SwitchofStuff("f"));
+
+function sequentialSizes(val)
+{
+	var answer = "";
+	switch(val){
+		case 1:
+		case 2:
+		case 3:
+		answer = "low";
+		break; // it goes automatically through every case
+
+		case 4:
+		case 5:
+		case 6:
+		answer = "mid";
+		break;
+	    
+		case 7:
+		case 8:
+		case 9:
+		answer = "high";
+		break;
+	}
+}
+console.log(sequentialSizes(5));
