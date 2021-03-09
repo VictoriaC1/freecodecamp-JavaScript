@@ -629,3 +629,347 @@ function sequentialSizes(val)
 	}
 }
 console.log(sequentialSizes(5));
+
+function chaintoswitch(val)
+{
+	var answer = " ";
+    
+    switch(val){ 
+     case "bob": answer = "marley";
+     break; 
+
+     case 42: answer = "the answer";
+     break;
+
+     case 1: answer = "there is no #1";
+     break;
+
+     case 99: answer = "delta";
+     break;
+    
+ 
+    }
+
+	return answer; 
+}
+
+function ifless(a,b)
+{
+   /*	if(a<b)return true; 
+
+	else return false; */
+
+	//same as:
+
+	return a<b; 
+}
+console.log(ifless(2,3));
+
+
+function abTest(a,b)
+{
+	if(a < 0 || b < 0 )
+		return undefined;
+    
+    return Math.round(Math.pow(Math.sqrt(a) + Math.sqrt(b), 2));
+}
+console.log(abTest(-2,3.5));
+
+///Card counting function
+var count = 0;
+
+function cc(card)
+{
+    switch(card)
+    {
+    	case 2: 
+    	case 3:
+    	case 4:
+    	case 5:
+    	case 6:
+    	count++; 
+    	break; 
+
+    	case 10:
+    	case "J":
+    	case "Q":
+    	case "K":
+    	case "A":
+    	count--; 
+    	break; 
+    }
+
+    var holdbet = 'Hold'; 
+
+    if(count>0){ holdbet= 'Bet;'}
+
+	return count + " " + holdbet; 
+}
+cc(2); cc('K'); cc(10); cc('K'); cc('A');
+
+console.log(cc(4));
+
+
+///Building JavaScript OBJECTS 
+
+//similar to arrays but instead of indexes we use properties to acces stuff
+//properties can be string, numbers, arrays, anything
+
+var ourDog = {
+	"name": "Camper",
+	"legs" : 4, 
+	"tails" : 1,
+	"friends" : ["everything"]
+};
+
+var myDog = {
+	"name": "Quincy",
+	"legs": 3,
+	"tails" : 2,
+	"friends": []
+};
+
+
+//Accessing properties with DOT
+
+var testobj ={
+	"hat": "ballcap",
+	"shirt": "jersey",
+	"shoes": "cleats"
+};
+
+var hatValue = testobj.hat;
+var shirtValue = testobj.shirt;
+
+console.log(hatValue, shirtValue);
+
+///if we have spaces we use the bracket notation
+var testobj2 ={
+	"an entree": "hamburger",
+	"my side": "veggies",
+	"the drink": "water"
+};
+var entreeValue = testobj2["an entree"];
+var drinkValue = testobj2['the drink'];
+
+console.log(entreeValue,"and", drinkValue); 
+
+//Accesing object properties with variables
+
+var testobj3 ={
+	12: "Namath",
+	16: "Montana",
+	19: "Unitas"
+};
+
+var playerNumber = 16;
+var player = testobj3[playerNumber];
+console.log(player);
+
+
+
+//Updating properties
+
+var thedog = {
+	"name": "Camper",
+	"legs": 4, 
+	"tails": 1, 
+	"friends": ["the campers"]
+};
+thedog.name = "Happy camper";
+
+
+//adding new properties to an object
+
+
+thedog.bark = "bow-wow";
+thedog['color'] = 'black'; 
+
+//deleting a property 
+
+delete thedog.tails; 
+
+///using objects for lookouts 
+//sometimes we can replace switch statements with an object
+
+
+function phoneticLookup(val)
+{
+ var result = " ";
+
+ var lookup = {
+	"alpha ": "adam",
+	"bravo" : "boston",
+	"echo ": "easy" 
+
+}; 
+ result = lookup[val]; 
+ return result;
+}
+console.log(phoneticLookup("bravo"));
+
+
+//we write the below was the upove function
+/* switch(val)
+{ 
+	 var result = "";
+
+	case "alpha":
+	result = "adam";
+	break;
+
+	case "bravo":
+	result = "boston";
+	break; 
+
+	case "echo": 
+	result = "easy";
+	break; 
+
+}*/
+
+///Checking if an object has a property
+var myobj = {
+	gift: "pony",
+	pet: "kitten",
+	bed: "sleigh"
+
+};
+
+function checkobj(checkprop){
+	if(myobj.hasOwnProperty(checkprop)) return myobj[checkprop];
+
+	else return "not found:(";
+
+
+}
+console.log(checkobj("room"));
+
+//A js object is a way to store flexible data
+
+var myMusic = [ 
+{
+
+	"artist": "Billy Joel",
+
+	"title": "Piano Man",
+
+	"release_year": 1973,
+
+	"formats": [
+	"CD",
+	"8T",
+	"LP"
+	], 
+	"gold": true
+},
+
+{
+
+  "artist": "Beau Carnes",
+
+  "title": "Cereal Man",
+
+  "release_year": 2003,
+
+  "formats": [
+  "YouTube video"
+  ]
+
+}
+
+
+];
+
+
+var myStorage = {
+	"car": {
+
+		"inside":{
+
+			"glove box": "maps",
+			"passenger seat": "crumbs"
+		},
+
+		"outside": {
+			"trunk": "jack"
+		}
+
+	}
+};
+var gloveBoxContents =  myStorage.car.inside["glove box"];
+console.log(gloveBoxContents);
+
+
+var myPlants = [ 
+ {
+ 	type: "flowers",
+
+ 	list: ["rose", "tulip", "dandelion"]
+ },
+
+ {
+ 	type: "trees",
+ 	list: ["fir", "pine", "birch"]
+ }
+
+];
+
+var secondTree = myPlants[1].list[1];  //we acces the second element in the second list of the function 
+console.log(secondTree);
+
+
+//collection project
+
+var collection = {
+	"2548":
+	{
+		"album": "Slippery when wet",
+		"artist": "Bon Jovi",
+		"tracks": ["Let it rock","you give love a bad name" ]
+	}, 
+
+		"2468":
+	{
+		"album": "1999",
+		"artist": "Prince", 
+		"tracks": [ "1999", "Little Red Corvette" ]
+	}, 
+
+		"1245":
+	{
+		"artist": "Robert Palmer",
+		"tracks": [ ]
+	}, 
+
+		"5439":
+	{
+		"album": "	ABBA Gold"
+		
+	}
+};
+//Keep a copy of the collection for tests 
+
+var collectionCopy = JSON.parse(JSON.stringify(collection));
+
+
+//we change the collection object but we made a copy
+
+function updateRecords (id, prop, value){
+  
+   if(value === " ")delete collection[id][prop];
+
+   else if(prop === "tracks"){
+   	collection[id][props] = collection[id][prop] || []; //if the propery doesn't exist.
+   	//we assign it an empty array
+   	collection[id][prop].push(value); // we push the value to the end of the array
+
+   }
+   else {
+   	collection[id][prop] = value; 
+   }
+	return collection; 
+
+}
+console.log(updateRecords(5439, "artist", "ABBA"));
+
