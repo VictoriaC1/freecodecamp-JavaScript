@@ -973,3 +973,245 @@ function updateRecords (id, prop, value){
 }
 console.log(updateRecords(5439, "artist", "ABBA"));
 
+///WHILE, FOR loops
+var myArray = [ ]; 
+var i = 0;
+while(i < 5){
+  myArray.push(i);
+  i++; 
+}
+console.log(myArray);
+
+for(var i=0; i<5;i++)
+{
+	myArray.push(i);
+
+}
+console.log(myArray);
+
+for(var i=0; i<10; i+=2)
+{
+	myArray.push(i);
+}
+console.log(myArray);
+
+for(var i=1; i<10; i+=2){
+	myArray.push(i);
+}
+console.log(myArray);
+
+for(var i=10; i>0; i-=2)
+{
+	myArray.push(i);
+}
+console.log(myArray);
+
+
+var ourArr = [9,10,11,12];
+var ourTotal=0;
+
+for(var i = 0; i<ourArr.length; i++) ///ourArr.length is 4 but the array has 3 positions
+{
+	ourTotal +=ourArr[i];
+}
+console.log(ourTotal);
+
+function multiplyAll(arr){
+	var product = 1; 
+
+	for(var i = 0; i< arr.length; i++)
+	{
+		for(var j=0; j< arr[i].length; j++)
+			product *= arr[i][j];
+
+	}
+	return product; 
+}
+
+var product = multiplyAll([[1,2],[3,4],[5,6,7]]);
+
+console.log(product);
+
+
+//DO loops 
+
+//The "while" loop first checks the condition BEFORE doing any of the code inside 
+///the loop 
+
+///The "do" loop will execute the code at least one time and THEN execute the
+///condition
+
+var arr = [ ];
+var i = 10; 
+
+do{
+	arr.push(i);
+	i++; 
+
+}while(i<5)
+
+console.log(i, arr);
+
+
+////Profile lookup, coding challenges 
+
+var contacts = [
+
+  {
+  	"firstname": "Akira",
+  	"lastname": "Laine",
+  	"number": "0532872398",
+  	"likes": ["pizza", "coding", "brownies" ]
+  },
+
+    {
+  	"firstname": "Harry",
+  	"lastname": "Potter",
+  	"number": "102920982490",
+  	"likes": ["magic", "hagrid", "hogwarts" ]
+  },
+
+   {
+  	"firstname": "Sherlock",
+  	"lastname": "Holmes",
+  	"number": "82348293",
+  	"likes": ["intriguing cases", "violin" ]
+  },
+
+   {
+  	"firstname": "Kristian",
+  	"lastname": "Vos",
+  	"number": "unknown",
+  	"likes": ["js", "foxes", "games" ]
+  }
+
+];
+
+function lookUpProfile(name, prop)
+{
+	for(var i=0; i<contacts.length; i++)
+	{
+		if(contacts[i].firstname === name) 
+          return contacts[i][prop] || "No such property"; 
+	}
+	return "No such contact"; 
+}
+
+var data = lookUpProfile("Sherlock", "lastname"); 
+console.log(data);
+
+///random fractions 
+
+function randomFraction(){
+	return Math.random(); 
+}
+console.log(randomFraction()); 
+
+///random whole numbers
+ 
+var randomnumber10to19 = Math.floor(Math.random()*20); 
+//floor rounds down
+function randomWholeNum()
+{
+   
+	return Math.random(); 
+
+} 
+console.log(randomnumber10to19);
+
+//random number in a range
+
+function randomrange(min, max)
+{
+	return Math.floor(Math.random() * (max - min + 1)) + min; 
+}
+console.log(randomrange(44,89.76));
+
+//the parseInt Function 
+//takes a string and returns an integer
+
+function convertTointeger(str){
+	return parseInt(str); 
+}
+convertTointeger("56");
+
+
+///binary to integers
+
+function convertoInteger(str){
+ return pareInt(str, 2); //base 2
+}
+
+convertTointeger("10011");
+
+///The conditional/ ternary operator
+
+function checkequal(a,b){
+	return a === b ? true : false; //the same as: return a === b; 
+}
+
+function checksign(nr)
+{
+	return nr > 0 ? "positive" : nr < 0 ? "negative" : "zero";
+}
+console.log(checksign(10));
+
+
+///Declaring variables: var,let,const; 
+
+
+// let -- does not let you declare the same variable twice 
+// it is also limited to the area where it is defined 
+
+//const -- all the features of let but it's read-only, you cannot reassign a const 
+
+//you should mainly use const and let
+ 
+ const s = [5,7,2];
+
+ function editinplace()
+ {
+ 	"use strict"; 
+
+ 	s[0] = 2;
+ 	s[1] = 5; 
+ 	s[2] = 7;
+
+ } 
+ editinplace();
+ console.log(s);
+
+//prevent object mutation 
+
+function freezeobj()
+{
+	"use strict";
+	const MATH_CONSTANTS = {
+		PI: 3.14
+	};
+
+	Object.freeze(MATH_CONSTANTS);
+
+
+	try{
+		MATH_CONSTANTS.PI = 99;
+	}catch (ex)
+     {
+     	console.log(ex);
+     }
+     return MATH_CONSTANTS.PI; 
+
+}
+const PI = freezeobj();
+console.log(PI);
+
+//Arrow functions to write concise anonymous functions
+
+const magic = () => new Date(); 
+
+var myconcat = (arr1, arr2) => /*return*/  arr1.concat(arr2);
+
+console.log(myconcat([1,2],[23,5,4])); 
+
+
+
