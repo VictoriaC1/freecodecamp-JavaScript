@@ -1213,5 +1213,275 @@ var myconcat = (arr1, arr2) => /*return*/  arr1.concat(arr2);
 
 console.log(myconcat([1,2],[23,5,4])); 
 
+const realNumberArray = [4, 6.5, -23.4, 43, 50]; 
+
+const squareList = (arr) => {
+	const squaredIntegers = arr.filter(num => Number.isInteger(num) && num>0).map(x => x*x); 
+	return squaredIntegers; 
+};
+
+const squaredIntegers = squareList(realNumberArray); 
+
+console.log(squaredIntegers);
+
+///Higher order arrow functions
+
+//default parameters for flexible functions
+
+const increment = (function()
+{
+	return function increment(number, value = 1){ //if the value is not added ,
+		//it will automatically be 1
+		return number + value;
+	};
+}) ();
+
+console.log(increment(5,2));
+console.log(increment(5)); 
+
+///when the argument is not defined
+
+const sum2 = (function (){
+	return function sum2(...args){ ///...args converts the arguments in an array
+		///called args, so we can add any amount of numbers
+
+		///instead of using:  const args = [x, y, z];
+
+		return args.reduce((a,b) => a + b, 0);
+	};
+
+})();
+
+console.log(sum2(1,2,3,4,6));
 
 
+//it expands out an array: it takes and array and expands it in parts 
+const arr1 = ['jan', 'feb', 'mar', 'apr', 'may'];
+let arr2; 
+(function (){
+
+	///arr2 = arr1; //we are not copying it!
+
+	arr2 = [...arr1]; //it spreads the contents of array1 into arr2
+	arr1[0] = 'potato';
+
+})();
+console.log(arr2);
+
+//DESTRUCTURING
+
+var voxel = {x: 3.6, y: 7.4, z: 6.54};
+
+var x = voxel.x; // x = 3.6
+var y = voxel.y; // y = 7.4
+var z = voxel.z; // z = 6.54 
+
+///this can be done in a simpler way:
+
+var { x : a, y : b, z : c} = voxel; 
+//a=x=3.6, y=7.4, z= 6.54
+
+
+//ex:
+
+const avgtemp = {
+	today : 77.5, 
+	tomorrow: 79
+};
+
+function getTempofTmrrw(avgTemp){
+	"use strict";
+     const { tomorrow: TempofTmrrw } = avgTemp; 
+     ///get the "tomorrow" field from the avgTemp object and assign it to the
+     // TempofTmrrw variable
+     return TempofTmrrw; 
+}
+
+const local_forecast = {
+	today: {min: 72, max: 83},
+	tomorrow: {min: 73.3, max: 84.6}
+}; 
+
+function getmaxoftomorrow (forecast){
+	"use strict"; 
+
+	const {tomorrow: {max: maxoftomorrow}}  = forecast; 
+
+	return maxoftomorrow; 
+}
+console.log(getmaxoftomorrow(local_forecast)); 
+
+var [z,x] = [1,2,3,4,5,6]; //we are assigning the vars x and y to the first
+//two numbers of the array, we cannot specifiy which element we want to assign like this
+
+var [z, x, , y] = [1,2,3,4,5,6]; 
+
+//y gets the fourth value in the array 
+
+
+var a = 8, b = 6; 
+(() => {
+	"use strict";
+	[a,b] = [b,a]; 
+})();
+
+
+//reassigning array elements:
+
+const source = [1,2,3,4,5,6,7,8,9,10];
+
+function removeFirstTwo(list)
+{
+	const [ , , ...arr] = list; 
+
+	//do nothing for the first, do nothing for the second
+	//put everything in the arr variable
+
+	return arr; 
+
+}
+var arr = removeFirstTwo(source); 
+
+console.log(arr);
+console.log(source); 
+
+//how to pass an object as a functions parameter
+
+const stats = {
+	max: 78.9, 
+	standard_deviation: 4.43,
+	median: 23.5, 
+	mode: 2.10,
+	min: -0.45,
+	average: 45.90
+};
+
+const half = (function ()
+{
+	return function half({max, min}){ //when "stats" gets passed it 
+	//it gets destructured to the max and min variables
+		return (max + min) / 2.0; 
+	};
+})(); 
+console.log("stats"); 
+console.log(half(stats)); 
+
+//More complex strings
+const person = {
+	name: "Zodiac Hasbro", 
+	age: 56
+}; 
+
+const greeting = `Hello, my name is ${person.name}! 
+I am ${person.age} years old` ; // the " ` ` " upper left on the keyboard, allow 
+//multiple string lines 
+
+console.log(greeting); 
+
+
+const result = {
+succes: ["1", "2", "3"],
+failure: ["4", "5", "6"],
+skipped: ["7", "8"]
+};
+
+function makelist(arr){
+	const resultDisplayArray = [ ];
+
+	for(let i = 0; i < arr.length; i++)
+	resultDisplayArray.push(`<li class = "text-warning>${arr[i]} </li>`); 
+    
+
+	return resultDisplayArray;
+}
+
+/**
+- makelist(result.failure) should return:
+
+- [ `<li class = "text-warning">4</li>`,
+     `<li class = "text-warning" > 5 </li>`, 
+     `<li class = "text-warning"> 6 </li>`
+   ]
+
+**/
+
+const resultDisplayArray = makelist(result.failure); 
+
+console.log(resultDisplayArray);
+
+
+const createperson = (name,age,gender) => ({name, age, gender}); 
+
+
+//{
+	/*return {
+		name: name,
+		age: age,
+		gender: gender
+	}; 
+}; 
+*/
+console.log(createperson("zodiac Habro", 56, "male"));
+
+//construct function 
+
+class spaceshuttle { constructor(targetPlanet){
+	this.targetPlanet = targetPlanet; 
+}
+
+}
+var zeus = new spaceshuttle("Jupiter"); 
+
+console.log(zeus.targetPlanet); 
+
+/*
+class Book {{
+	constructor(author){
+		this._author = author; 
+	}
+
+
+//getter: 
+
+get writer(){
+	return this._author; 
+}
+
+//setter: 
+
+set writer(updatedAuthor){
+	this._author = updatedAuthor; 
+}
+}
+*/
+//ex: 
+function makeclass(){
+	class thermostat{
+		constructor(temp){
+		this._temp = 5/9 * (temp - 32);
+	}
+	get temperature(){
+      return this._temp; 
+	}
+
+	set temperature(updatedTemp){
+		this._temp = updatedTemp; 
+	}
+}
+return thermostat; 
+}
+
+const thermostat = makeclass(); 
+const thermos = new thermostat(76); 
+let temp = thermos.temperature; 
+thermos.temperature = 26; 
+temp = thermos.temperature; 
+
+console.log(temp); 
+
+
+//Import vs require 
+import { capitalizeString } from "./string_function"
+const cap = capitalizeString("hello");
+
+console.log(cap); 
